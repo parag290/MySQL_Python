@@ -81,6 +81,18 @@ def add_entry(db):
 
 def delete_entry(db):
     print("\n....Deleting Entry....")
+    accnt = int(raw_input('Enter account number to be searched = '))
+    cursor = db.cursor()
+
+    sql = "DELETE FROM accounts WHERE accnt_no = '%d'" % (accnt)
+
+    try:
+        cursor.execute(sql)
+        db.commit()
+
+    except:
+        print("Error: Unable to delete entry")
+        db.rollback()
 
 
 def serach(db):
