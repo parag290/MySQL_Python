@@ -89,6 +89,13 @@ def delete_entry(db):
     try:
         cursor.execute(sql)
         db.commit()
+        #rowcount - this is a read only attribute and returns the number of rows that were affected by execute() method
+        #if given account number is not present in table then no row will be affected
+        count = cursor.rowcount
+        if count == 0:
+            print("Error: no entry present with given account number")
+        else:
+            print("Entry deleted succesfully")
 
     except:
         print("Error: Unable to delete entry")
@@ -138,6 +145,13 @@ def modify_entry(db):
     try:
         cursor.execute(sql)
         db.commit()
+        # rowcount - this is a read only attribute and returns the number of rows that were affected by execute() method
+        #if given account number is not present in table then no row will be affected
+        count = cursor.rowcount
+        if count == 0:
+            print("Error: no entry present with given account number")
+        else:
+            print("Entry modified succesfully")
 
     except:
         print("Error: Unable to update entry")
